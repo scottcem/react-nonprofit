@@ -1,7 +1,18 @@
 import React from "react";
 import classes from "./Conditions.module.css";
+import { makeStyles } from '@material-ui/core/styles/makeStyles';
 
 const Conditions = (props) => {
+  const useStyles = makeStyles({
+    root: {
+      maxWidth: 345,
+    },
+    media: {
+      height: 140,
+    },
+  });
+
+  const classes = useStyles();
   return (
     <div className={classes.Wrapper}>
       {props.error && (

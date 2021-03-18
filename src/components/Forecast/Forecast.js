@@ -1,14 +1,38 @@
 import React, { useState } from "react";
 import Conditions from "../Conditions/Conditions";
 import classes from "./Forecast.module.css";
+import NonProfits from "../NonProfits/NonProfits";
+import axios from "axios";
 
 function Forecast() {
   let [responseObj, setResponseObj] = useState({});
+  let [responseArray, setResponseArray] = useState([]);
   let [city, setCity] = useState("");
   let [unit, setUnit] = useState("imperial");
   const uriEncodedCity = encodeURIComponent(city);
   let [error, setError] = useState(false);
   let [loading, setLoading] = useState(false);
+  
+  
+async function getUser(e) {
+  e.preventDefault();
+    const response = 
+      await axios({
+        method: 'get',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        url: `http://localhost:8080/player/points/position?position=${uriEncodedCity}`,
+        data: city
+      }).then(function (response) {
+        console.log(response.data);
+      })
+
+        .catch((err) => {
+                setError(true);
+                setLoading(false);
+                console.log(err.message);
+              }
+        )
+    }
 
   function getForecast(e) {
     e.preventDefault();
@@ -23,35 +47,38 @@ function Forecast() {
 
     setLoading(true);
 
-    fetch(
-      `https://community-open-weather-map.p.rapidapi.com/weather?units=${unit}&q=${uriEncodedCity}`,
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key": process.env.REACT_APP_API_KEY,
-          "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.cod !== 200) {
-          throw new Error();
-        }
-        setResponseObj(response);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(true);
-        setLoading(false);
-        console.log(err.message);
-      });
+    // fetch(
+    //   `http://192.168.1.109:8080/nonprofits/city?city=${uriEncodedCity}`,
+    //   {
+    //     method: "GET",
+    //     headers: {
+    //       // "x-rapidapi-key": process.env.REACT_APP_API_KEY,
+    //       "x-rapidapi-host": "localhost:8080",
+    //     },
+    //   }
+    // )
+    
+  //     .then((response) => {console.log("response", response)
+  //       return response.json()})
+  //     .then((response) => {
+  //       if (response.cod !== 200) {
+  //         throw new Error();
+  //       }
+  //       setResponseObj(response);
+  //       // setResponseArray(responseObj.map(item => {name: item.name; address: item.address}))
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setError(true);
+  //       setLoading(false);
+  //       console.log(err.message);
+  //     });
+  // }
   }
-
   return (
     <div>
       <h2>Find A Location Near You!!!</h2>
-      <form onSubmit={getForecast}>
+      <form onSubmit={getUser}>
         <input
           type="text"
           placeholder="Enter City"
@@ -81,17 +108,18 @@ function Forecast() {
           Celcius
         </label> */}
         <button className={classes.Button} type="submit">
-          Get Location
+          Find Help
         </button>
       </form>
-      <Conditions
-        responseObj={responseObj}
+      <NonProfits
+        responseArray={responseArray}
         error={error} //new
         loading={loading} //new
       />
     </div>
   );
 }
+
 
 export default Forecast;
 //notes here
