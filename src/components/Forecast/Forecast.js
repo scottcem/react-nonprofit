@@ -20,7 +20,7 @@ async function getUser(e) {
       await axios({
         method: 'get',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: `http://localhost:8080/player/points/position?position=${uriEncodedCity}`,
+        url: `http://localhost:8080/nonprofits/city?city=${uriEncodedCity}`,
         data: city
       }).then(function (response) {
         console.log(response.data);
