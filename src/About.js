@@ -11,6 +11,7 @@ function About() {
                 <li>Steve Nicksic</li>
                 <li>Shawn Christy</li>
                 <li>Wade LaCour</li>
+                <p>We have studied from Tech Talent South and hope to share our knowledge with you all!</p>
                 <p>Contact Us Below!</p>
             </ul>
         </div>
