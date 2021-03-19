@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Forecast from "./components/Forecast/Forecast";
 import NonProfits from "./components/NonProfits/NonProfits";
 import About from "./About";
+import Table from "./Table";
 
 function App() {
   // componentDidMount() {
@@ -20,12 +21,18 @@ function App() {
         <h2>Find Help Now</h2>
       <p>Connecting people in need with people who can help.</p>
       <About />
+      <Table />
       </header>
       <Header/>
       <main>
         <Forecast />{" "}
       </main>
-      <footer>Page created by TEAM Sawyer, Wade, Shawn, Steve, Scott!!</footer>
+      <footer>Page created by TEAM Sawyer, Wade, Shawn, Steve, Scott!!
+        <table>
+        <About />  
+        <Table />
+        </table>
+      </footer>
     </div>
   );
 }

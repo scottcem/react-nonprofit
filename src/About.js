@@ -13,6 +13,7 @@ function About() {
                 <li>Wade LaCour</li>
                 <p>We have studied from Tech Talent South and hope to share our knowledge with you all!</p>
                 <p>Contact Us Below!</p>
+                
             </ul>
         </div>
     )
