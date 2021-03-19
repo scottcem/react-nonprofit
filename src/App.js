@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Forecast from "./components/Forecast/Forecast";
 import NonProfits from "./components/NonProfits/NonProfits";
+import About from "./About";
 
 function App() {
   // componentDidMount() {
@@ -18,6 +19,7 @@ function App() {
       <header className="App-header">
         <h2>Find Help Now</h2>
       <p>Connecting people in need with people who can help.</p>
+      <About />
       </header>
       <Header/>
       <main>
